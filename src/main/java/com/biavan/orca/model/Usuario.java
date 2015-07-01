@@ -24,8 +24,8 @@ public class Usuario implements Serializable {
 	private String senha;
 	
 	@ManyToOne
-	@JoinColumn(name = "conta_id", nullable = false)
-	private Conta conta;
+	@JoinColumn(name = "organizacao_id", nullable = false)
+	private Organizacao organizacao;
 	
 	public long getId() {
 		return id;
@@ -59,12 +59,12 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 	
-	public Conta getConta() {
-		return conta;
+	public Organizacao getOrganizacao() {
+		return organizacao;
 	}
-	
-	public void setConta(Conta conta) {
-		this.conta = conta;
+
+	public void setOrganizacao(Organizacao organizacao) {
+		this.organizacao = organizacao;
 	}
 	
 }

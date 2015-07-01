@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.biavan.orca.domain.TipoOperacao;
@@ -34,7 +36,9 @@ public class Lancamento implements Serializable{
 	
 	private Date dataPagamento;
 	
-	private Moeda moeda;
+	@ManyToOne
+	@JoinColumn(name = "conta_id", nullable = false)
+	private Conta conta;
 	
 	public long getId() {
 		return id;
@@ -100,22 +104,12 @@ public class Lancamento implements Serializable{
 		this.dataPagamento = dataPagamento;
 	}
 
-	public Moeda getMoeda() {
-		return moeda;
+	public Conta getConta() {
+		return conta;
 	}
 
-	public void setMoeda(Moeda moeda) {
-		this.moeda = moeda;
+	public void setConta(Conta conta) {
+		this.conta = conta;
 	}
-
-	public double getCambio() {
-		return cambio;
-	}
-
-	public void setCambio(double cambio) {
-		this.cambio = cambio;
-	}
-
-	private double cambio;
 
 }
