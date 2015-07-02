@@ -63,7 +63,7 @@
 
 	<aop:config>
 		<aop:pointcut id="userServicePointCut"
-			expression="execution(* com.biavan.brend.service.*Service.*(..))" />
+			expression="execution(* com.biavan.orca.service.*Service.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" />
 	</aop:config>
 

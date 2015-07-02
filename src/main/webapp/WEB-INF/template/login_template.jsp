@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
-	<title>Brend - Login</title>
+	<title>Orca - Login</title>
 	<!-- stylesheets -->
 	<c:forEach var="css" items="${loginStylesheets}">
 	    <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
