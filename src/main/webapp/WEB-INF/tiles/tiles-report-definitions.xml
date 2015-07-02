@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="reportTemplate" template="/WEB-INF/template/report_template.jsp">
+		<put-list-attribute name="stylesheets">
+			<add-attribute value="/resources/sb_admin_2/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+			<add-attribute value="/resources/sb_admin_2/bower_components/metisMenu/dist/metisMenu.min.css" />
+			<add-attribute value="/resources/sb_admin_2/dist/css/sb-admin-2.css" />
+			<add-attribute value="/resources/sb_admin_2/bower_components/font-awesome/css/font-awesome.min.css" />
+			<add-attribute value="/resources/bootgrid/jquery.bootgrid.css" />
+			<add-attribute value="/resources/css/estilo.css" />			
+		</put-list-attribute>
+		<put-list-attribute name="javascripts">
+			<add-attribute value="/resources/sb_admin_2/bower_components/jquery/dist/jquery.min.js" />
+			<add-attribute value="/resources/sb_admin_2/bower_components/bootstrap/dist/js/bootstrap.min.js" />
+			<add-attribute value="/resources/sb_admin_2/bower_components/metisMenu/dist/metisMenu.min.js" />
+			<add-attribute value="/resources/sb_admin_2/dist/js/sb-admin-2.js" />
+			<add-attribute value="/resources/bootstrap/js/ie-emulation-modes-warning.js" />
+			<add-attribute value="/resources/bootgrid/jquery.bootgrid.js" />
+			<add-attribute value="/resources/chart/Chart.js" />
+		</put-list-attribute>
+	</definition>
+
+</tiles-definitions>

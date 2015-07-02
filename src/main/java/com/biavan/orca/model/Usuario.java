@@ -22,6 +22,8 @@ public class Usuario implements Serializable {
 	private String nome;
 	private String login;
 	private String senha;
+	private String papel;
+	private boolean ativo;
 	
 	@ManyToOne
 	@JoinColumn(name = "organizacao_id", nullable = false)
@@ -59,6 +61,22 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 	
+	public String getPapel() {
+		return papel;
+	}
+
+	public void setPapel(String papel) {
+		this.papel = papel;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	public Organizacao getOrganizacao() {
 		return organizacao;
 	}
