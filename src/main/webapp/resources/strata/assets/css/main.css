@@ -1565,8 +1565,11 @@
 			transition: none !important;
 		}
 
-	body, input, select, textarea {
+	body {
 		color: #a2a2a2;
+	}
+	
+	body, input, select, textarea {
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
@@ -1771,7 +1774,7 @@
 		background: #f7f7f7;
 		border-radius: 0.35em;
 		border: solid 2px transparent;
-		color: inherit;
+		/*color: inherit;*/
 		display: block;
 		outline: 0;
 		padding: 0 0.75em;
@@ -2549,7 +2552,7 @@
 	#main {
 		margin-left: 35%;
 		max-width: 54em;
-		padding: 8em 4em 4em 4em;
+		padding: 0em 4em 4em 4em;
 		width: calc(100% - 35%);
 	}
 

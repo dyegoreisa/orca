@@ -25,6 +25,7 @@ public class Conta implements Serializable{
 	@Column(unique = true)
 	private String nome;
 	
+	@Column(name = "tipo_conta")
 	private TipoConta tipoConta;
 	
 	@ManyToOne

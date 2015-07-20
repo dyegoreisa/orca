@@ -3,6 +3,7 @@ package com.biavan.orca.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -24,16 +25,22 @@ public class Lancamento implements Serializable{
 	
 	private String descricao;
 	
+	@Column(name = "numero_documento")
 	private String numeroDocumento;
 	
+	@Column(name = "tipo_operacao")
 	private TipoOperacao tipoOperacao;
 	
+	@Column(name = "valor_previsto")
 	private double valorPrevisto;
 	
+	@Column(name = "valor_pago")
 	private double valorPago;
 	
+	@Column(name = "data_vencimento")
 	private Date dataVencimento;
 	
+	@Column(name = "data_pagamento")
 	private Date dataPagamento;
 	
 	@ManyToOne

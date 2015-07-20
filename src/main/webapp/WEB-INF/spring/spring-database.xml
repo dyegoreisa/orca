@@ -44,8 +44,15 @@
     <bean id="usuarioService" class="com.biavan.orca.service.UsuarioServiceImpl">
         <property name="usuarioDAO" ref="usuarioDAO"/>
     </bean>
-    
-    
+
+	<bean id="organizacaoDAO" class="com.biavan.orca.dao.OrganizacaoDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="organizacaoService" class="com.biavan.orca.service.OrganizacaoServiceImpl">
+        <property name="organizacaoDAO" ref="organizacaoDAO"/>
+        <property name="usuarioDAO" ref="usuarioDAO"/>
+    </bean>
+	
     
     <tx:annotation-driven transaction-manager="transactionManager"/>
      

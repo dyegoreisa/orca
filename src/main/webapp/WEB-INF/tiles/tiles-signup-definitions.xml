@@ -6,11 +6,13 @@
 
 	<definition name="signUpTemplate" template="/WEB-INF/template/sign_up_template.jsp">
 		<put-list-attribute name="signUpStylesheets">
+			<add-attribute value="/resources/sb_admin_2/bower_components/bootstrap/dist/css/bootstrap.min.css" />
 			<add-attribute value="/resources/strata/assets/css/main.css" />
 		</put-list-attribute>
 		<put-list-attribute name="signUpJavascripts">
 			<add-attribute value="/resources/strata/assets/js/jquery.min.js" />
 			<add-attribute value="/resources/strata/assets/js/jquery.poptrox.min.js" />
+			<add-attribute value="/resources/sb_admin_2/bower_components/bootstrap/dist/js/bootstrap.min.js" />
 			<add-attribute value="/resources/strata/assets/js/skel.min.js" />
 			<add-attribute value="/resources/strata/assets/js/util.js" />
 			<add-attribute value="/resources/strata/assets/js/main.js" />

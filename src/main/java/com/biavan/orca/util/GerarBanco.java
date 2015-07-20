@@ -5,7 +5,8 @@ public class GerarBanco {
 	public static void main(String[] args) {
 		
 		HibernateUtil.gerarBanco();
-
+	
+		System.out.println("******* FEITO! *******");
 	}
 	
 }

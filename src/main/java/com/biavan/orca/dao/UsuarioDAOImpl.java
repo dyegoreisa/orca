@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.biavan.orca.model.Usuario;
 
@@ -19,13 +21,13 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	public void insere(Usuario usuario) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(usuario);
+		session.persist(encriptarSenha(usuario));
 	}
 
 	@Override
 	public void atualiza(Usuario usuario) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(usuario);
+		session.update(encriptarSenha(usuario));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -71,5 +73,10 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		}
 	}
 
-
+	private Usuario encriptarSenha(Usuario usuario) {
+		String senha = usuario.getSenha();
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		usuario.setSenha(passwordEncoder.encode(senha)); 
+		return usuario;
+	}
 }

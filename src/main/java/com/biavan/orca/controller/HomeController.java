@@ -16,14 +16,21 @@ import com.biavan.plugin.mail.SendMailSSL;
 @Controller
 public class HomeController {
 
-	@RequestMapping(value = "/home", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(value = {"/home", "/"}, method = RequestMethod.GET)
+	public String home(
+			@RequestParam(value = "duplicado", required = false) String duplicado,
+			Locale locale, Model model) {
+		
+		if (duplicado != null) {
+			model.addAttribute("duplicado", "O E-mail informado já existe.");
+		}
+		
 		return "home";
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
 	public String signUp(Locale locale, Model model) {
-		return "sign_up";
+		return "dashboard";
 	}
 	
 	@RequestMapping(value = "/contato", method = RequestMethod.POST)
@@ -46,7 +53,7 @@ public class HomeController {
 		mensagem.append("Nome: " + nome + "\nE-mail: " + email + "\nMensagem: " + texto);
 		
 		MessageProperty messageProperty = new MessageProperty();
-		messageProperty.setFrom("dyegoreisa@gmail.com");
+		messageProperty.setFrom("dyego.azevedo@bol.com.br");
 		messageProperty.setSubject("Contato pelo Fale Conosco do Site");
 		messageProperty.setMessage(mensagem.toString());
 		messageProperty.addRecipient("dyegoreisa@gmail.com");
@@ -66,25 +73,25 @@ public class HomeController {
 		@Override
 		public String getSmtpHost() {
 			// TODO Auto-generated method stub
-			return "smtp.gmail.com";
+			return "smtps.bol.com.br";
 		}
 
 		@Override
 		public String getSmtpPort() {
 			// TODO Auto-generated method stub
-			return "465";
+			return "587";
 		}
 
 		@Override
 		public String getSmtpLogin() {
 			// TODO Auto-generated method stub
-			return "dyegoreisa@gmail.com";
+			return "dyego.azevedo@bol.com.br";
 		}
 
 		@Override
 		public String getSmtpSenha() {
 			// TODO Auto-generated method stub
-			return "goox4wy9";
+			return "*****";
 		}
 		
 	}

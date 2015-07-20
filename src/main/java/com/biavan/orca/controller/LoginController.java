@@ -20,7 +20,7 @@ public class LoginController {
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login(
 			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout, 
+			@RequestParam(value = "logout", required = false) String logout,
 			HttpServletRequest request, Model model) {
 		
 		if (error != null) {
@@ -28,11 +28,18 @@ public class LoginController {
 		}
 
 		if (logout != null) {
-			model.addAttribute("msg", "Você saiu do sistema.");
+			return "redirect:/home";
 		}
-	
-		return "login";
+
+		model.addAttribute("telaLogin", true);
+		return "home";
 	}
+	
+	@RequestMapping(value = "/telaLogin")
+	public String telaLogin(Model model) {
+		model.addAttribute("telaLogin", true);
+		return "home";
+	}	
 	
 	// customize the error message
 	private String getErrorMessage(HttpServletRequest request, String key) {
@@ -57,6 +64,10 @@ public class LoginController {
 
 		// check if user is login
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth == null) {
+			return "redirect:/telaLogin";
+		}
+		
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 			UserDetails userDetail = (UserDetails) auth.getPrincipal();
 			System.out.println(userDetail);

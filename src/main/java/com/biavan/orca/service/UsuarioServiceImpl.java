@@ -31,7 +31,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 	@Override
 	@Transactional
 	public void insereUsuario(Usuario usuario) {
-		usuarioDAO.insere(encriptarSenha(usuario));
+		usuarioDAO.insere(usuario);
 
 	}
 
@@ -45,8 +45,7 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 	@Transactional
 	public void atualizaUsuario(Usuario usuario, String senha) {
 		usuario.setSenha(senha);
-		usuarioDAO.atualiza(encriptarSenha(usuario));
-
+		usuarioDAO.atualiza(usuario);
 	}
 
 	
@@ -98,13 +97,6 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
 
 		return Result;
-	}
-	
-	private Usuario encriptarSenha(Usuario usuario) {
-		String senha = usuario.getSenha();
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		usuario.setSenha(passwordEncoder.encode(senha)); 
-		return usuario;
 	}
 
 }
