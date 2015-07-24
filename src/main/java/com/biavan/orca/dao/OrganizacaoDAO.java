@@ -9,5 +9,7 @@ public interface OrganizacaoDAO {
 	public void atualiza(Organizacao organizacao);
 
 	public Organizacao getById(long id);
+	
+	public Organizacao getByLogin(String login);
 
 }

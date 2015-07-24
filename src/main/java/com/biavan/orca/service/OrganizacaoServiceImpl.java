@@ -56,4 +56,9 @@ public class OrganizacaoServiceImpl implements OrganizacaoService {
 		
 		return false;
 	}
+	
+	@Override
+	public Organizacao getOrganizacaoByLogin(String login) {
+		return organizacaoDAO.getByLogin(login);
+	}
 }

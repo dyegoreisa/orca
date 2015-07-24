@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.biavan.orca.model.Organizacao;
 import com.biavan.orca.model.Usuario;
 import com.biavan.orca.service.OrganizacaoService;
-import com.biavan.orca.service.UsuarioService;
 
 
 @Controller
@@ -29,27 +29,26 @@ public class OrganizacaoController {
 
 	@RequestMapping(value = "/atualizar", method = RequestMethod.POST)
 	public String atualizar(
-			@ModelAttribute("configEmpresa") Organizacao organizacao, Model model) {
+			@ModelAttribute("organizacao") Organizacao organizacao, Model model) {
 		
-		//this.organizacaoService.atualizaOrganizacao(organizacao);
+		organizacaoService.atualizaOrganizacao(organizacao);
 	
 		model.addAttribute("sucesso", "Configurações da organização foram atualizado com sucesso!");
-		//model.addAttribute("organizacao", this.organizacaoService.getOrganizacaoById(1));
-		return "organizacao_atualizar";
+		model.addAttribute("organizacao", organizacao);
+		return "organizacao/organizacao_atualizar";
 	}
 
-	@RequestMapping(value = "/telaAtualizar")
-	public String telaAtualizar(Model model) {
-		//model.addAttribute("configEmpresa", this.organizacaoService.getConfigEmpresaById(1));
-		return "empresa_atualizar";
+	@RequestMapping(value = "/telaAtualizar/{id}")
+	public String telaAtualizar(@PathVariable("id") long id, Model model) {
+		model.addAttribute("organizacao", organizacaoService.getOrganizacaoById(id));
+		return "organizacao/organizacao_atualizar";
 	}
 	
 	@RequestMapping(value = "/novoUsuario")
 	public String novoUsuario(
 			@RequestParam("nome") String nome,
 			@RequestParam("email") String email,
-			@RequestParam("senha") String senha,
-			Model model) {
+			@RequestParam("senha") String senha,			Model model) {
 		
 		Organizacao organizacao = new Organizacao();
 		organizacao.setNome(nome);

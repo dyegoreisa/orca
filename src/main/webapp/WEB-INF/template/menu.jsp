@@ -17,15 +17,15 @@
     <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right espaco-topo">
-        <li>${userLogin }</li>
+        <li>${usuario.nome }</li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="<c:url value="/usuario/telaAtualizar/${userLogin }"/>"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                <li><a href="<c:url value="/usuario/telaAtualizar/${usuario.id }"/>"><i class="fa fa-user fa-fw"></i> Perfil</a>
                 </li>
-                <li><a href="<c:url value="/organizacao/telaAtualizar"/>"><i class="fa fa-gear fa-fw"></i> Configuração</a>
+                <li><a href="<c:url value="/organizacao/telaAtualizar/${organizacao.id }"/>"><i class="fa fa-gear fa-fw"></i> Configuração</a>
                 </li>
                 <li class="divider"></li>
                 <li><a href="javascript:formLogout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>

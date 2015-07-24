@@ -11,4 +11,6 @@ public interface OrganizacaoService {
 
 	public Organizacao getOrganizacaoById(long id);
 	
+	public Organizacao getOrganizacaoByLogin(String login);
+	
 }
