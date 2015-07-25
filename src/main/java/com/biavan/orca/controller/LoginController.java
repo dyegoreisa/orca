@@ -35,8 +35,14 @@ public class LoginController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/telaLogin")
-	public String telaLogin(Model model) {
+	@RequestMapping(value = "/telaLogin", method = RequestMethod.GET)
+	public String telaLogin(@RequestParam(required = false) String emailAlterado
+			, Model model) {
+		
+		if (emailAlterado != null) {
+			model.addAttribute("emailAlterado", "Ao alterar o e-mail é necessário logar novamente.");
+		}
+		
 		model.addAttribute("telaLogin", true);
 		return "home";
 	}	

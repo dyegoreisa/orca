@@ -54,10 +54,14 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		
 		Usuario usuario = usuarioService.getUsuarioByLogin(auth.getName());
+		if (usuario == null) {
+			return "redirect:/telaLogin?emailAlterado";
+		}
+		
 		Organizacao organizacao = usuario.getOrganizacao(); 
 		
-		session.setAttribute("usuario", usuario);
-		session.setAttribute("organizacao", organizacao);
+		session.setAttribute("usuarioLogado", usuario);
+		session.setAttribute("organizacaoSessao", organizacao);
 		return "dashboard";
 	}
 	

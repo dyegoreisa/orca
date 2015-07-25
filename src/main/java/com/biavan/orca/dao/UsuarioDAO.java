@@ -10,11 +10,15 @@ public interface UsuarioDAO {
 
 	public void atualiza(Usuario usuario);
 	
+	public void atualizaSenha(Usuario usuario);
+	
 	public List<Usuario> lista();
 
 	public void remove(String login);
 	
 	public Usuario findByLogin(String login);
+	
+	public boolean findByLoginDuplicated(Usuario usuario);
 	
 	public Usuario getById(long id);
 	

@@ -7,15 +7,17 @@ import com.biavan.orca.model.Usuario;
 
 public interface UsuarioService {
 
-	public void insereUsuario(Usuario usuario);
+	public boolean insereUsuario(Usuario usuario);
 
-	public void atualizaUsuario(Usuario usuario);
+	public boolean atualizaUsuario(Usuario usuario);
 	
 	public void atualizaUsuario(Usuario usuario, String senha);
 
 	public List<Usuario> listaUsuarios();
 	
 	public Usuario getUsuarioByLogin(String login);
+	
+	public Usuario getUsuarioById(long id);
 
 	public void removeUsuario(String login);
 	

@@ -208,6 +208,10 @@
 						<div class="alert alert-danger" role="alert">${error }</div>
 					</c:if>
 					
+					<c:if test="${not empty emailAlterado }">
+						<div class="alert alert-warning" role="alert">${emailAlterado }</div>
+					</c:if>
+					
 					<!-- Text input-->
 					<div class="form-group" id="div-email">
 					  <label class="col-md-2 control-label" for="login-email">E-mail:</label>  

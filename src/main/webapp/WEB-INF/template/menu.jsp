@@ -12,20 +12,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<c:url value="/home"/>">Orca - Planejamento Pessoal</a>
+        <a class="navbar-brand" href="<c:url value="/dashboard"/>">Orca - Planejamento Pessoal</a>
     </div>
     <!-- /.navbar-header -->
 
     <ul class="nav navbar-top-links navbar-right espaco-topo">
-        <li>${usuario.nome }</li>
+        <li>${usuarioLogado.nome }</li>
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
-                <li><a href="<c:url value="/usuario/telaAtualizar/${usuario.id }"/>"><i class="fa fa-user fa-fw"></i> Perfil</a>
+                <li><a href="<c:url value="/usuario/perfil/${usuarioLogado.id }"/>"><i class="fa fa-user fa-fw"></i> Perfil</a>
                 </li>
-                <li><a href="<c:url value="/organizacao/telaAtualizar/${organizacao.id }"/>"><i class="fa fa-gear fa-fw"></i> Configuração</a>
+                <li><a href="<c:url value="/organizacao/telaAtualizar/${organizacaoSessao.id }"/>"><i class="fa fa-gear fa-fw"></i> Configuração</a>
                 </li>
                 <li class="divider"></li>
                 <li><a href="javascript:formLogout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -49,7 +49,7 @@
                 <li class="sidebar-search">
                     <div class="input-group custom-search-form">
                     	<form action="${requestScope['javax.servlet.forward.context_path']}/busca/pesquisar" method="GET">
-                        <input type="number" name="palavra" class="form-control" placeholder="Busca..." data-toggle="tooltipbusca" data-placement="right" title="Informe o número do Orçamento ou da OS."/>
+                        <input type="number" name="palavra" class="form-control" placeholder="Busca..." data-toggle="tooltipbusca" data-placement="right" title="Informe algum dado do lançamento."/>
                         </form>
                     </div>
                     <!-- /input-group -->

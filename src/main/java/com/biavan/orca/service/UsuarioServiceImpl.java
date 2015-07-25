@@ -11,8 +11,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,15 +28,27 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 	
 	@Override
 	@Transactional
-	public void insereUsuario(Usuario usuario) {
-		usuarioDAO.insere(usuario);
-
+	public boolean insereUsuario(Usuario usuario) {
+		
+		if (usuarioDAO.findByLogin(usuario.getLogin()) ==  null) {
+			usuarioDAO.insere(usuario);
+			
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override
 	@Transactional
-	public void atualizaUsuario(Usuario usuario) {
+	public boolean atualizaUsuario(Usuario usuario) {
+		
+		if (usuarioDAO.findByLoginDuplicated(usuario)) {
+			return false;
+		}
+		
 		usuarioDAO.atualiza(usuario);
+		return true;
 	}
 
 	@Override
@@ -59,6 +69,13 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 	@Transactional
 	public Usuario getUsuarioByLogin(String login) {
 		Usuario usuario = usuarioDAO.findByLogin(login);
+		return usuario;
+	}
+	
+	@Override
+	@Transactional
+	public Usuario getUsuarioById(long id) {
+		Usuario usuario = usuarioDAO.getById(id);
 		return usuario;
 	}
 

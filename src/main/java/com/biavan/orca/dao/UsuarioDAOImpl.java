@@ -27,6 +27,12 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 	@Override
 	public void atualiza(Usuario usuario) {
 		Session session = this.sessionFactory.getCurrentSession();
+		session.update(usuario);
+	}
+	
+	@Override
+	public void atualizaSenha(Usuario usuario) {
+		Session session = sessionFactory.getCurrentSession();
 		session.update(encriptarSenha(usuario));
 	}
 
@@ -73,10 +79,24 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public boolean findByLoginDuplicated(Usuario usuario) {
+		Session session = this.sessionFactory.getCurrentSession();
+		
+		 Usuario usuarioEncontrado = (Usuario) session.createQuery("from Usuario where login = :login and id <> :id")
+			.setString("login", usuario.getLogin())
+			.setLong("id", usuario.getId()).uniqueResult();
+		 
+		 return (usuarioEncontrado != null);
+	}
+
 	private Usuario encriptarSenha(Usuario usuario) {
 		String senha = usuario.getSenha();
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		usuario.setSenha(passwordEncoder.encode(senha)); 
+		if (senha != null) {
+			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			usuario.setSenha(passwordEncoder.encode(senha));
+		}
 		return usuario;
 	}
 }
