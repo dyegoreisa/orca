@@ -1,5 +1,7 @@
 package com.biavan.orca.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -38,9 +40,21 @@ public class OrganizacaoController {
 		return "organizacao/organizacao_atualizar";
 	}
 
-	@RequestMapping(value = "/telaAtualizar/{id}")
-	public String telaAtualizar(@PathVariable("id") long id, Model model) {
-		model.addAttribute("organizacao", organizacaoService.getOrganizacaoById(id));
+	@RequestMapping(value = "/telaAtualizar/{id}", method = RequestMethod.GET)
+	public String telaAtualizar(@PathVariable("id") long id, Model model, HttpSession session) {
+		
+		Organizacao organizacao = organizacaoService.getOrganizacaoById(id);
+		
+		Organizacao organizacaoSessao = (Organizacao) session.getAttribute("organizacaoSessao");
+		
+		if (!organizacaoSessao.equals(organizacao)) {
+			Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioLogado");
+			model.addAttribute("login", usuarioSessao.getLogin());
+			return "pages/403";
+		}
+
+		model.addAttribute("organizacao", organizacao);
+		
 		return "organizacao/organizacao_atualizar";
 	}
 	

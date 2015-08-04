@@ -88,5 +88,45 @@ public class Usuario implements Serializable {
 	public void setOrganizacao(Organizacao organizacao) {
 		this.organizacao = organizacao;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (ativo ? 1231 : 1237);
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (ativo != other.isAtivo())
+			return false;
+		if (id != other.getId())
+			return false;
+		if (login == null) {
+			if (other.getLogin() != null)
+				return false;
+		} else if (!login.equals(other.getLogin()))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login
+				+ ", papel=" + papel + ", ativo=" + ativo + ", organizacao="
+				+ organizacao.getNome() + "]";
+	}
+
+
 	
 }

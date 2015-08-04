@@ -53,5 +53,33 @@ public class Organizacao implements Serializable {
 		return "Organizacao [id=" + id + ", nome=" + nome + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Organizacao other = (Organizacao) obj;
+		if (id != other.getId())
+			return false;
+		if (nome == null) {
+			if (other.getNome() != null)
+				return false;
+		} else if (!nome.equals(other.getNome()))
+			return false;
+		return true;
+	}
+
 
 }

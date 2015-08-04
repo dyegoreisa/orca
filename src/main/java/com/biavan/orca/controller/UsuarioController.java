@@ -2,6 +2,8 @@ package com.biavan.orca.controller;
 
 import java.beans.PropertyEditorSupport;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -83,9 +85,19 @@ public class UsuarioController {
 	public String telaAtualizar(@PathVariable("id") long id 
 			, @RequestParam(required = false) String sucesso
 			, @RequestParam(required = false) String duplicado
-			, Model model) {
+			, Model model
+			, HttpSession session) {
 		
 		Usuario usuario = usuarioService.getUsuarioById(id);
+		
+		Organizacao organizacaoSessao = (Organizacao) session.getAttribute("organizacaoSessao");
+		
+		if (!organizacaoSessao.equals(usuario.getOrganizacao())) {
+			Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioLogado");
+			model.addAttribute("login", usuarioSessao.getLogin());
+			return "pages/403";
+		}
+		
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("organizacao", usuario.getOrganizacao());
 		
@@ -104,9 +116,20 @@ public class UsuarioController {
 	public String perfil(@PathVariable("id") long id
 			, @RequestParam(required = false) String sucesso
 			, @RequestParam(required = false) String duplicado
-			, Model model) {
+			, Model model
+			, HttpSession session) {
 		
-		model.addAttribute("usuario", usuarioService.getUsuarioById(id));
+		Usuario usuario = usuarioService.getUsuarioById(id);
+		
+		Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioLogado");
+		
+		if (!usuarioSessao.equals(usuario)) {
+			model.addAttribute("login", usuarioSessao.getLogin());
+			return "pages/403";
+		}
+
+		
+		model.addAttribute("usuario", usuario);
 
 		if (sucesso != null) {
 			model.addAttribute("sucesso", "Dados do usuário foram atualizado com sucesso!");
@@ -119,7 +142,7 @@ public class UsuarioController {
 		return "usuario/perfil";
 	}
 	
-	@RequestMapping(value = "/inserir")
+	@RequestMapping(value = "/inserir", method = RequestMethod.POST)
 	public String inserir(@ModelAttribute("usuario") Usuario usuario, Model model) {
 
 		usuario.setAtivo(true);
