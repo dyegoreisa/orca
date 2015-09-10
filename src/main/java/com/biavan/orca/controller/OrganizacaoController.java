@@ -62,7 +62,8 @@ public class OrganizacaoController {
 	public String novoUsuario(
 			@RequestParam("nome") String nome,
 			@RequestParam("email") String email,
-			@RequestParam("senha") String senha,			Model model) {
+			@RequestParam("senha") String senha,
+			Model model) {
 		
 		Organizacao organizacao = new Organizacao();
 		organizacao.setNome(nome);

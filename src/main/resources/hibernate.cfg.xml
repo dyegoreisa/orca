@@ -38,7 +38,7 @@
 		<mapping class="com.biavan.orca.model.Conta" />
 		<mapping class="com.biavan.orca.model.Usuario" />
         <mapping class="com.biavan.orca.model.Lancamento" />
-        <mapping class="com.biavan.orca.model.Moeda" />
+        <mapping class="com.biavan.orca.model.Categoria" />
         <mapping class="com.biavan.orca.model.Organizacao" />
 	</session-factory>
 </hibernate-configuration>

@@ -42,6 +42,10 @@ public class Lancamento implements Serializable{
 	
 	@Column(name = "data_pagamento")
 	private Date dataPagamento;
+
+	@ManyToOne
+	@JoinColumn(name = "categoria_id", nullable = false)
+	private Categoria categoria;	
 	
 	@ManyToOne
 	@JoinColumn(name = "conta_id", nullable = false)
@@ -109,6 +113,14 @@ public class Lancamento implements Serializable{
 
 	public void setDataPagamento(Date dataPagamento) {
 		this.dataPagamento = dataPagamento;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	public Conta getConta() {

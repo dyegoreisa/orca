@@ -26,7 +26,7 @@
             	<value>com.biavan.orca.model.Conta</value>
                 <value>com.biavan.orca.model.Usuario</value>
                 <value>com.biavan.orca.model.Lancamento</value>
-                <value>com.biavan.orca.model.Moeda</value>
+                <value>com.biavan.orca.model.Categoria</value>
                 <value>com.biavan.orca.model.Organizacao</value>
             </list>
         </property>
@@ -52,7 +52,13 @@
         <property name="organizacaoDAO" ref="organizacaoDAO"/>
         <property name="usuarioDAO" ref="usuarioDAO"/>
     </bean>
-	
+
+    <bean id="lancamentoDAO" class="com.biavan.orca.dao.LancamentoDAOImpl">
+        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+    </bean>
+    <bean id="lancamentoService" class="com.biavan.orca.service.LancamentoServiceImpl">
+        <property name="lancamentoDAO" ref="lancamentoDAO"/>
+    </bean>	
     
     <tx:annotation-driven transaction-manager="transactionManager"/>
      

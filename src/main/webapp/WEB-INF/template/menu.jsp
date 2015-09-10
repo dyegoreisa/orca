@@ -58,7 +58,10 @@
                     <a href="<c:url value="/dashboard"/>"><i class="fa fa-dashboard fa-fw"></i> Visão Geral</a>
                 </li>
                 <li>
-                    <a href="<c:url value="/lancamento/telaInserir" />"><i class="fa fa-pencil fa-fw"></i> Novo lançamento</a>
+                    <a href="<c:url value="/lancamento/telaInserir/entrada" />"><i class="fa fa-pencil fa-fw"></i> Nova Entrada</a>
+                </li>
+                <li>
+                    <a href="<c:url value="/lancamento/telaInserir/saida" />"><i class="fa fa-pencil fa-fw"></i> Nova Saída</a>
                 </li>
                 <li>
                     <a href="<c:url value="/lancamento/listar" />"><i class="fa fa-list-alt fa-fw"></i> Lançamentos do mês</a>
